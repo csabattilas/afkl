@@ -1,0 +1,53 @@
+<header>Check in</header>
+<div class="content">
+  <div
+    [formGroup]="form"
+    class="form"
+  >
+    <h1>Retrieve your booking<span>-</span></h1>
+    <p class="intro">You can find your booking by filling out your family name and the booking code in your booking
+      confirmation</p>
+    <p>
+      <mat-error *ngIf="error$ | async as error">{{error}}</mat-error>
+    </p>
+    <mat-form-field appearance="outline">
+      <mat-label>Booking code</mat-label>
+      <input
+        matInput
+        placeholder="Booking code"
+        formControlName="bookingCode"
+        maxlength="6"
+      >
+      <mat-error *ngIf="form.get('bookingCode')?.hasError('required')">Booking code is mandatory!</mat-error>
+      <mat-error *ngIf="form.get('bookingCode')?.hasError('minlength')">Booking code has at least 5 characters!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Family name</mat-label>
+      <input
+        matInput
+        placeholder="Family name"
+        formControlName="lastName"
+      >
+      <mat-error *ngIf="form.get('lastName')?.hasError('required')">Family name is mandatory!</mat-error>
+    </mat-form-field>
+
+    <mat-spinner
+      *ngIf="loading$ | async; else button"
+      color="primary"
+      diameter="25"
+    >
+    </mat-spinner>
+  </div>
+</div>
+
+<ng-template #button>
+  <button
+    mat-raised-button
+    color="accent"
+    (click)="logon()"
+  >
+    Retrieve booking
+  </button>
+</ng-template>

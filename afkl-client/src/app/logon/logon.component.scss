@@ -1,0 +1,46 @@
+.content {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  width: 100%;
+  border: none;
+  padding: 2rem;
+  margin-top: 4rem;
+
+  @media screen and (min-width: 830px) {
+    width: 415px;
+    border: 1px solid;
+  }
+
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .mat-raised-button {
+    padding: 0.6rem;
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  h1 {
+    text-align: center;
+
+    span {
+      display: block;
+      line-height: 1;
+    }
+  }
+
+  .intro {
+    margin-bottom: 2rem;
+  }
+
+  mat-spinner {
+    display: block;
+    margin: 1rem auto;
+  }
+}

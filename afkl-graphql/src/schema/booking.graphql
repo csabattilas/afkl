@@ -1,0 +1,51 @@
+type Booking {
+    passengers: [Passenger!]!
+    itinerary: Itinerary!
+}
+
+type Itinerary {
+    type: String!,
+    destinationCity: String!,
+    connections: [Connection!]!
+}
+
+type Connection {
+    duration: Int!,
+    origin: Node!,
+    destination: Node!
+    segments: [Segment!]!
+}
+
+type Node {
+    iata: String!,
+    airport: String!,
+    city: String!,
+    country: String!
+}
+
+type Segment {
+    departFrom: Node!
+    arriveOn: Node!
+    flight: Flight!
+}
+
+type Flight {
+    number: String!
+    carrier: String!
+    scheduledDepartureTime: String!
+    scheduledArrivalTime: String
+    cabin: String!
+    aircraft: String!
+    checkInStartTime: String!
+}
+
+type Passenger {
+    lastName: String!
+    firstName: String!
+    title: String!
+}
+
+type Query {
+    getBookingDetails(bookingCode: String!, lastName: String!): Booking!
+    bookingExist(bookingCode: String!, lastName: String!): Boolean!
+}

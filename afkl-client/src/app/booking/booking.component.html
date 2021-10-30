@@ -1,0 +1,33 @@
+<div *ngIf="booking$ | async as booking; else loadingOrError">
+  <h1>Your booking to {{booking.itinerary.destinationCity}}</h1>
+  <mat-expansion-panel *ngFor="let connection of booking.itinerary.connections">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{connection.origin.city}} [{{connection.origin.iata}}] - {{connection.destination.city}}
+        [{{connection.destination.iata}}]
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div
+      *ngFor="let segment of connection.segments"
+    >
+      <div class="segment-flight">
+        <div>
+          <div>{{segment.departFrom.city}}</div>
+          <div>{{segment.arriveOn.city}}</div>
+        </div>
+        <div>
+          <div>{{segment.flight.scheduledDepartureTime | date: 'short'}}
+            - {{segment.flight.scheduledArrivalTime | date: 'short'}}</div>
+          <div>{{segment.flight.carrier}}{{segment.flight.number}} - {{segment.flight.aircraft}}</div>
+        </div>
+      </div>
+      <div>Check-in starts at: {{segment.flight.checkInStartTime | date: 'short'}}</div>
+    </div>
+  </mat-expansion-panel>
+</div>
+<ng-template #loadingOrError>
+  <div *ngIf="error; else loading">{{error}}</div>
+</ng-template>
+<ng-template #loading>
+  loading
+</ng-template>

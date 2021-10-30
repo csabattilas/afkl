@@ -1,0 +1,14 @@
+@use '~@angular/material' as mat;
+
+@mixin theme($afkl-theme) {
+  @include mat.form-field-theme($afkl-theme);
+
+  .mat-form-field {
+    &.mat-form-field-appearance-outline {
+      .mat-form-field-outline-start,
+      .mat-form-field-outline-end {
+        border-radius: 0;
+      }
+    }
+  }
+}

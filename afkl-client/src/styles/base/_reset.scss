@@ -1,0 +1,36 @@
+@font-face {
+  font-family: ExcellenceInMotionBold;
+  src: url("/assets/font/ExcellenceInMotionScreen-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: ExcellenceInMotion;
+  src: url("/assets/font/ExcellenceInMotionScreen-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, "Helvetica Neue", sans-serif;
+  color: #00164c;
+}
+
+header {
+  background-image: url("/assets/img/af_pattern_bg.png");
+  padding: 1rem;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+
+h1 {
+  text-transform: uppercase;
+}

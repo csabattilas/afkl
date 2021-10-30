@@ -1,0 +1,63 @@
+@use 'src/styles/material-overrides/index' as afkl-mat;
+@use '~@angular/material' as mat;
+@use 'sass:map';
+
+$afkl-primary: mat.define-palette(map.merge(mat.$indigo-palette, (500: #00164c)));
+$afkl-accent: mat.define-palette(map.merge(mat.$orange-palette, (500: #d40504)));
+
+$afkl-theme: mat.define-light-theme((
+  color: (
+    primary: $afkl-primary,
+    accent: $afkl-accent,
+  )
+));
+
+$body-level: mat.define-typography-level(
+  $font-family: ExcellenceInMotion,
+  $font-weight: 400,
+  $font-size: 1.1rem,
+  $line-height: 1,
+  $letter-spacing: normal
+);
+
+$input-level: mat.define-typography-level(
+  $font-family: ExcellenceInMotion,
+  $font-weight: normal,
+  $font-size: 1rem,
+  $line-height: 1,
+  $letter-spacing: normal,
+);
+
+$button-level: mat.define-typography-level(
+  $font-family: ExcellenceInMotion,
+  $font-weight: normal,
+  $font-size: 1rem,
+  $line-height: 1,
+  $letter-spacing: normal,
+);
+
+$headline-level: mat.define-typography-level(
+  $font-family: ExcellenceInMotion,
+  $font-weight: 700,
+  $font-size: 2.5rem,
+  $line-height: 1,
+  $letter-spacing: normal,
+);
+
+$afkl-typography-config: mat.define-typography-config(
+  $body-1: $body-level,
+  $headline: $headline-level,
+  $button: $button-level,
+  $input: $input-level,
+);
+
+@include mat.core($afkl-typography-config);
+
+@include mat.core-theme($afkl-theme);
+@include afkl-mat.button-theme($afkl-theme);
+@include afkl-mat.form-field-theme($afkl-theme);
+@include mat.progress-spinner-theme($afkl-theme);
+@include mat.expansion-theme($afkl-theme);
+
+
+

@@ -1,0 +1,11 @@
+@use '~@angular/material' as mat;
+
+@mixin theme($afkl-theme) {
+  @include mat.button-theme($afkl-theme);
+
+  .mat-raised-button:not([class*=mat-elevation-z]) {
+    border-radius: 0;
+    box-shadow: none;
+    color: white;
+  }
+}
