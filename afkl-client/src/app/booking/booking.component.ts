@@ -11,7 +11,7 @@ import {catchError} from 'rxjs/operators';
   styleUrls: ['./booking.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BookingComponent implements OnInit {
+export class BookingComponent {
   error?: string;
   booking$: Observable<Booking> = this.bookingService
     .getBookingDetails(
@@ -26,8 +26,5 @@ export class BookingComponent implements OnInit {
     private readonly bookingService: BookingService,
     private readonly activatedRoute: ActivatedRoute
   ) {
-  }
-
-  ngOnInit(): void {
   }
 }
