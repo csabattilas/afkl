@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BookingComponent } from './booking.component';
+import {BookingComponent} from './booking.component';
+import {ActivatedRoute, Router} from '@angular/router';
 
 describe('BookingComponent', () => {
   let component: BookingComponent;
@@ -8,9 +9,23 @@ describe('BookingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BookingComponent ]
+      declarations: [BookingComponent],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              queryParams: {}
+            }
+          }
+        },
+        {
+          provide: Router,
+          useValue: {}
+        },
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

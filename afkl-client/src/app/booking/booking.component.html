@@ -2,7 +2,10 @@
 <div class="content">
   <div *ngIf="booking$ | async as booking; else loadingOrError">
     <h1>Your booking to {{booking.itinerary.destinationCity}}</h1>
-    <mat-expansion-panel *ngFor="let connection of booking.itinerary.connections">
+    <mat-expansion-panel
+      *ngFor="let connection of booking.itinerary.connections; let i = index"
+      [attr.data-e2e]="'expansion-panel_connection-' + i"
+    >
       <mat-expansion-panel-header>
         <mat-panel-title>
           {{connection.origin.city}} ({{connection.origin.iata}}) - {{connection.destination.city}}
@@ -40,11 +43,20 @@
         <div>Check-in starts at: {{segment.flight.checkInStartTime | date: 'short'}}</div>
       </div>
     </mat-expansion-panel>
+    <h2>Passengers</h2>
+    <ul>
+      <li *ngFor="let passenger of booking.passengers">{{passenger.title}} {{passenger.firstName}} {{passenger.lastName}}</li>
+    </ul>
   </div>
 </div>
 <ng-template #loadingOrError>
   <div *ngIf="error; else loading">{{error}}</div>
 </ng-template>
 <ng-template #loading>
-  loading
+  <mat-spinner
+    color="primary"
+    diameter="25"
+    data-e2e="spinner_loading"
+  >
+  </mat-spinner>
 </ng-template>

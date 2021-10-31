@@ -1,0 +1,22 @@
+{
+  "valid": {
+    "bookingCode": "PZIGZ3",
+    "lastName": "HESP"
+  },
+  "bookingNotFound": {
+    "bookingCode": "PZIGZ3",
+    "lastName": "HES"
+  },
+  "invalidShortBookingCode": {
+    "bookingCode": "PZIG",
+    "lastName": "HESP"
+  },
+  "invalidNoLastName": {
+    "bookingCode": "PZIGZ3",
+    "lastName": ""
+  },
+  "invalidNoBookingCode": {
+    "bookingCode": "",
+    "lastName": "HESP"
+  }
+}

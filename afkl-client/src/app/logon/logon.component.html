@@ -8,7 +8,10 @@
     <p class="intro">You can find your booking by filling out your family name and the booking code in your booking
       confirmation</p>
     <p>
-      <mat-error *ngIf="error$ | async as error">{{error}}</mat-error>
+      <mat-error
+        *ngIf="error$ | async as error"
+        data-e2e="error-msg_page"
+      >{{error}}</mat-error>
     </p>
     <mat-form-field appearance="outline">
       <mat-label>Booking code</mat-label>
@@ -17,9 +20,18 @@
         placeholder="Booking code"
         formControlName="bookingCode"
         maxlength="6"
+        data-e2e="input_bookingCode"
       >
-      <mat-error *ngIf="form.get('bookingCode')?.hasError('required')">Booking code is mandatory!</mat-error>
-      <mat-error *ngIf="form.get('bookingCode')?.hasError('minlength')">Booking code has at least 5 characters!
+      <mat-error
+        *ngIf="form.get('bookingCode')?.hasError('required')"
+        data-e2e="error-msg_booking-required"
+      >
+        Booking code is mandatory!
+      </mat-error>
+      <mat-error
+        *ngIf="form.get('bookingCode')?.hasError('minlength')"
+        data-e2e="error-msg_booking-invalid"
+      >Booking code has at least 5 characters!
       </mat-error>
     </mat-form-field>
 
@@ -29,14 +41,21 @@
         matInput
         placeholder="Family name"
         formControlName="lastName"
+        data-e2e="input_lastName"
       >
-      <mat-error *ngIf="form.get('lastName')?.hasError('required')">Family name is mandatory!</mat-error>
+      <mat-error
+        *ngIf="form.get('lastName')?.hasError('required')"
+        data-e2e="error-msg_lastName-required"
+      >
+        Family name is mandatory!
+      </mat-error>
     </mat-form-field>
 
     <mat-spinner
       *ngIf="loading$ | async; else button"
       color="primary"
       diameter="25"
+      data-e2e="spinner_loading"
     >
     </mat-spinner>
   </div>
@@ -46,6 +65,7 @@
   <button
     mat-raised-button
     color="accent"
+    data-e2e="button_logon"
     (click)="logon()"
   >
     Retrieve booking

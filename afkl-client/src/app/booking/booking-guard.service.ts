@@ -15,11 +15,16 @@ export class BookingGuardService {
   }
 
   canActivate(activatedRouteSnapshot: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    return this.bookingService.checkBooking(activatedRouteSnapshot.queryParams.bookingCode, activatedRouteSnapshot.queryParams.lastName)
-      .pipe(
-        catchError((e) => {
-          this.router.navigate(['logon'])
-          return throwError(false);
-        }))
+    if (activatedRouteSnapshot.queryParams.bookingCode && activatedRouteSnapshot.queryParams.lastName) {
+      return this.bookingService.checkBooking(activatedRouteSnapshot.queryParams.bookingCode, activatedRouteSnapshot.queryParams.lastName)
+        .pipe(
+          catchError((e) => {
+            this.router.navigate(['logon'])
+            return throwError(false);
+          }))
+    } else {
+      this.router.navigate(['logon']);
+      return false;
+    }
   }
 }

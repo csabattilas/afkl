@@ -1,12 +1,21 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { BookingGuardService } from './booking-guard.service';
+import {BookingGuardService} from './booking-guard.service';
+import {Router} from '@angular/router';
 
 describe('BookingGuardService', () => {
   let service: BookingGuardService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: Router,
+          useValue: {}
+        },
+      ]
+    });
+
     service = TestBed.inject(BookingGuardService);
   });
 

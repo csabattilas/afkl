@@ -44,11 +44,20 @@ $headline-level: mat.define-typography-level(
   $letter-spacing: normal,
 );
 
+$title-level: mat.define-typography-level(
+  $font-family: ExcellenceInMotion,
+  $font-weight: 700,
+  $font-size: 1.5rem,
+  $line-height: 1,
+  $letter-spacing: normal,
+);
+
 $afkl-typography-config: mat.define-typography-config(
   $body-1: $body-level,
   $headline: $headline-level,
   $button: $button-level,
   $input: $input-level,
+  $title: $title-level,
 );
 
 @include mat.core($afkl-typography-config);

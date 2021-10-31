@@ -1,6 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LogonComponent } from './logon.component';
+import {LogonComponent} from './logon.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('LogonComponent', () => {
   let component: LogonComponent;
@@ -8,9 +13,21 @@ describe('LogonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LogonComponent ]
+      declarations: [LogonComponent],
+      imports: [
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        NoopAnimationsModule,
+      ],
+      providers: [
+        {
+          provide: Router,
+          useValue: {}
+        },
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

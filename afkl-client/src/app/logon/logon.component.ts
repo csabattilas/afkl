@@ -39,14 +39,14 @@ export class LogonComponent {
   private buildForm(): LogonFormGroup {
     return this.formBuilder.group({
         bookingCode: new FormControl(
-          'PZIGZ3',
+          '',
           [
             Validators.required,
             Validators.minLength(5),
             Validators.maxLength(6)
           ]),
         lastName: new FormControl(
-          'HESP',
+          '',
           [Validators.required]
         ),
       } as LogonFormControls

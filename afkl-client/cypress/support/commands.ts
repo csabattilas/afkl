@@ -41,3 +41,16 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+import {BookingFixture} from './commands/booking/booking.model';
+import {fillInLogonForm} from './commands/booking/booking.command';
+
+Cypress.Commands.add("fillInLogonForm", fillInLogonForm);
+
+declare global {
+  namespace Cypress {
+    interface Chainable<Subject> {
+      fillInLogonForm(bookingFixture: BookingFixture): void;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import gql from "graphql-tag";
-import {Observable, Subject, throwError} from 'rxjs';
+import {Observable, Subject, throwError, ReplaySubject} from 'rxjs';
 import {Booking, Query} from '../types';
 import {Apollo} from 'apollo-angular';
 import {map, catchError} from 'rxjs/operators';
@@ -33,7 +33,7 @@ export class BookingService {
   private loading = new Subject<boolean>();
   loading$ = this.loading.asObservable();
 
-  private error = new Subject<string>();
+  private error = new ReplaySubject<string>(1);
   error$ = this.error.asObservable();
 
   constructor(private readonly apollo: Apollo) {
