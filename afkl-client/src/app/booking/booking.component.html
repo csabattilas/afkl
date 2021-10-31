@@ -1,6 +1,9 @@
-<header>Your booking</header>
-<div class="content">
+<header>
+  Your booking
+  <a [routerLink]="['/logon']">check another booking</a>
+</header>
 
+<div class="content">
   <div *ngIf="booking$ | async as booking; else loadingOrError">
     <h1>Your {{booking.itinerary.type}} booking to {{booking.itinerary.destinationCity}}</h1>
     <mat-expansion-panel

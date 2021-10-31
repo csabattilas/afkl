@@ -1,5 +1,14 @@
 @use '~@angular/material' as mat;
 
+header {
+  a {
+    font-size: 0.8rem;
+    position: absolute;
+    color: white;
+    right: 1rem
+  }
+}
+
 .content {
   justify-content: center;
   margin: 4rem auto 0;
