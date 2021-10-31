@@ -12,7 +12,6 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class BookingComponent {
   error$ = this.bookingService.error$;
-  loading$ = this.bookingService.loading$;
 
   booking$: Observable<Booking> = this.bookingService
     .getBookingDetails(
