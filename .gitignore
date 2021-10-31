@@ -39,7 +39,8 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-
+/**/dist
+/**/cypress/videos
 # System Files
 .DS_Store
 Thumbs.db

@@ -27,8 +27,7 @@ package that implements end-to-end testing capabilities.
 
 ## Run end-to-end tests
 
-Run `npm run cypress:run` to execute the end-to-end tests via a platform of your choice. To use this command, you need
-to first add a package that implements end-to-end testing capabilities.
+Run `ng serve` and when the app is loaded run `npm run cypress:run`
 
 ## Further help
 
