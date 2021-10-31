@@ -20,6 +20,6 @@ export class BookingGuardService {
         catchError((e) => {
           this.router.navigate(['logon'])
           return throwError(false);
-        }));
+        }))
   }
 }

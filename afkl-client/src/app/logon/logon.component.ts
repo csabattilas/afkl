@@ -1,7 +1,8 @@
 import {Component, ChangeDetectionStrategy} from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, Validators, FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import {BookingService} from '../booking/booking.service';
+import {LogonFormGroup, LogonFormControls} from './logon.forms-model';
 
 @Component({
   selector: 'app-logon',
@@ -10,7 +11,7 @@ import {BookingService} from '../booking/booking.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LogonComponent {
-  form: FormGroup
+  form: LogonFormGroup;
   loading$ = this.bookingService.loading$;
   error$ = this.bookingService.error$;
 
@@ -35,11 +36,20 @@ export class LogonComponent {
     }
   }
 
-  private buildForm(): FormGroup {
+  private buildForm(): LogonFormGroup {
     return this.formBuilder.group({
-        bookingCode: ['PZIGZ3', [Validators.required, Validators.minLength(5), Validators.maxLength(6)]],
-        lastName: ['HESP', Validators.required]
-      }
-    )
+        bookingCode: new FormControl(
+          'PZIGZ3',
+          [
+            Validators.required,
+            Validators.minLength(5),
+            Validators.maxLength(6)
+          ]),
+        lastName: new FormControl(
+          'HESP',
+          [Validators.required]
+        ),
+      } as LogonFormControls
+    ) as LogonFormGroup;
   }
 }

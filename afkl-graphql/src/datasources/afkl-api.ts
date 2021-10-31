@@ -8,6 +8,15 @@ export class AfklApi extends RESTDataSource {
         this.baseURL = 'http://localhost:3001';
     }
 
+    static convertMinutesToHoursMinutes = (minutes: number) => {
+        const h = Math.floor(minutes / 60);
+        const m = minutes % 60;
+        const hString = h < 10 ? '0' + h : h;
+        const mString = m < 10 ? '0' + m : m;
+
+        return `${hString}:${mString}`;
+    }
+
     /**
      * get booking
      * @param bookingCode
@@ -33,14 +42,14 @@ export class AfklApi extends RESTDataSource {
             .then((response) => this.createBooking(response))
     }
 
-    private createBooking = (response: ApiBooking): Booking => ({
+    private createBooking = (response: ApiBooking): any => ({
         itinerary: {
             type: response.itinerary.type,
             destinationCity: response.itinerary.connections[0].destination.city.name,
             connections: response.itinerary.connections.map(connection => ({
                 origin: this.parseApiNodeToNode(connection.origin),
                 destination: this.parseApiNodeToNode(connection.destination),
-                duration: connection.duration,
+                duration: AfklApi.convertMinutesToHoursMinutes(connection.duration),
                 segments: connection.segments.map(segment => ({
                     arriveOn: this.parseApiNodeToNode(segment.arriveOn),
                     departFrom: this.parseApiNodeToNode(segment.departFrom),

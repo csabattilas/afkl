@@ -1,0 +1,46 @@
+@use '~@angular/material' as mat;
+@use 'sass:map';
+
+@mixin theme($afkl-theme) {
+  @include mat.expansion-theme($afkl-theme);
+
+  $config: mat.get-color-config($afkl-theme);
+  $primary: map.get($config, primary);
+
+  .mat-expansion-panel:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+    border: 1px solid;
+    border-radius: 0;
+  }
+
+  .mat-expansion-panel-header {
+    font-family: ExcellenceInMotionBold;
+    font-size: 1rem;
+    color: white;
+  }
+
+  .mat-expansion-panel {
+    &.mat-expanded {
+      .mat-expansion-panel-header {
+        background-color: mat.get-color-from-palette($primary, 500) !important; // todo fix this
+        margin-bottom: 1rem;
+      }
+    }
+
+    &:not(.mat-expanded) {
+      .mat-expansion-panel-header {
+        background-color: mat.get-color-from-palette($primary, 500) !important;
+
+        &:hover {
+          background-color: mat.get-color-from-palette($primary, 500) !important;
+        }
+      }
+    }
+  }
+
+
+  .mat-expansion-panel-header-title,
+  .mat-expansion-indicator::after {
+    color: white;
+  }
+}

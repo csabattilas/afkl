@@ -20,7 +20,7 @@ export type Booking = {
 export type Connection = {
   __typename?: 'Connection';
   destination: Node;
-  duration: Scalars['Int'];
+  duration: Scalars['String'];
   origin: Node;
   segments: Array<Segment>;
 };

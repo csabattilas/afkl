@@ -56,8 +56,5 @@ $afkl-typography-config: mat.define-typography-config(
 @include mat.core-theme($afkl-theme);
 @include afkl-mat.button-theme($afkl-theme);
 @include afkl-mat.form-field-theme($afkl-theme);
+@include afkl-mat.expansion-theme($afkl-theme);
 @include mat.progress-spinner-theme($afkl-theme);
-@include mat.expansion-theme($afkl-theme);
-
-
-

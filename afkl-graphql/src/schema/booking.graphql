@@ -10,7 +10,7 @@ type Itinerary {
 }
 
 type Connection {
-    duration: Int!,
+    duration: String!,
     origin: Node!,
     destination: Node!
     segments: [Segment!]!
