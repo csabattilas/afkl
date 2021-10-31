@@ -23,7 +23,10 @@ describe('LogonComponent', () => {
       providers: [
         {
           provide: Router,
-          useValue: {}
+          useValue: {
+            navigate: () => {
+            }
+          }
         },
       ]
     })
@@ -39,4 +42,33 @@ describe('LogonComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should navigate away on valid form', () => {
+    const router = TestBed.inject(Router);
+    spyOn(router, 'navigate');
+
+    component.logon();
+    expect(component.form.valid).toBe(false);
+
+    component.form.get('bookingCode')?.setValue('PZIGZ3');
+    component.form.get('lastName')?.setValue('');
+
+    component.logon();
+    expect(component.form.valid).toBe(false);
+
+    component.form.get('bookingCode')?.setValue('PZIG');
+    component.form.get('lastName')?.setValue('HESP');
+
+    component.logon();
+    expect(component.form.valid).toBe(false);
+
+    component.form.get('bookingCode')?.setValue('PZIGZ3');
+    component.form.get('lastName')?.setValue('HESP');
+
+    component.logon();
+    expect(component.form.valid).toBe(true);
+    expect(router.navigate).toHaveBeenCalledWith(['booking'], {
+      queryParams: {bookingCode: 'PZIGZ3', lastName: 'HESP'}
+    });
+  })
 });
