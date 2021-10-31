@@ -3,7 +3,6 @@ const app = express()
 const port = process.env.PORT || 3001
 
 app.get('/booking', (req, res) => {
-    console.log(req.query.bookingCode);
     if (
         !req.query.lastName ||
         !req.query.bookingCode ||

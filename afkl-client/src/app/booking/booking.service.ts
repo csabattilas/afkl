@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import {Observable, Subject, throwError, ReplaySubject} from 'rxjs';
 import {Booking, Query} from '../types';
 import {Apollo} from 'apollo-angular';
-import {map, catchError} from 'rxjs/operators';
+import {map, catchError, tap} from 'rxjs/operators';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 
 const nodeFragment = gql`
@@ -61,6 +61,7 @@ export class BookingService {
         return throwError(e);
       }),
       map(({data}) => data.bookingExist),
+      tap(() => this.resetStates()), // todo maybe remove this side effect. used here only for consistency
       untilDestroyed(this)
     );
   }
@@ -112,8 +113,20 @@ export class BookingService {
       },
       fetchPolicy: "network-only"
     }).pipe(
+      catchError((e) => {
+        this.loading.next(false);
+        this.error.next('Error retrieving the booking')
+
+        return throwError(e);
+      }),
       map(({data}) => data.getBookingDetails),
+      tap(() => this.resetStates()), // todo maybe remove this side effect. used here only for consistency
       untilDestroyed(this)
     );
+  }
+
+  private resetStates() {
+    this.error.next('');
+    this.loading.next(false);
   }
 }

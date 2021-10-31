@@ -1,9 +1,8 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {BookingService} from './booking.service';
-import {Observable, throwError} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Booking} from '../types';
 import {ActivatedRoute} from '@angular/router';
-import {catchError} from 'rxjs/operators';
 
 @Component({
   selector: 'app-booking',
@@ -12,15 +11,14 @@ import {catchError} from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookingComponent {
-  error?: string;
+  error$ = this.bookingService.error$;
+  loading$ = this.bookingService.loading$;
+
   booking$: Observable<Booking> = this.bookingService
     .getBookingDetails(
       this.activatedRoute.snapshot.queryParams.bookingCode,
       this.activatedRoute.snapshot.queryParams.lastName,
-    ).pipe(catchError((e) => {
-      this.error = 'Could not retrieve booking';
-      return throwError(e);
-    }))
+    )
 
   constructor(
     private readonly bookingService: BookingService,

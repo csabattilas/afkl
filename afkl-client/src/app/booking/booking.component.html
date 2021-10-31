@@ -1,5 +1,6 @@
 <header>Your booking</header>
 <div class="content">
+
   <div *ngIf="booking$ | async as booking; else loadingOrError">
     <h1>Your {{booking.itinerary.type}} booking to {{booking.itinerary.destinationCity}}</h1>
     <mat-expansion-panel
@@ -50,7 +51,7 @@
   </div>
 </div>
 <ng-template #loadingOrError>
-  <div *ngIf="error; else loading">{{error}}</div>
+  <mat-error *ngIf="error$ | async as error; else loading">{{error}}</mat-error>
 </ng-template>
 <ng-template #loading>
   <mat-spinner
