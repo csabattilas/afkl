@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon 'src/server.ts' --exec 'ts-node' src/server.ts",
+    "server": "ts-node src/server.ts",
     "generate": "graphql-codegen"
   },
   "keywords": [],
