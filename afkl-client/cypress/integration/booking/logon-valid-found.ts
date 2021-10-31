@@ -44,7 +44,7 @@ describe('Retrieve booking with booking', () => {
     })
 
     cy.wait('@graphql').then(() => {
-      cy.contains('Your booking to ');
+      cy.contains('Your one way booking to ');
     })
   });
 })
