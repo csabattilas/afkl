@@ -43,6 +43,12 @@ export type Itinerary = {
   type: Scalars['String'];
 };
 
+export enum ItineraryType {
+  MultiCity = 'multi_city',
+  OneWay = 'one_way',
+  Return = 'return'
+}
+
 export type Node = {
   __typename?: 'Node';
   airport: Scalars['String'];

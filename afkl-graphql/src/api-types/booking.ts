@@ -1,3 +1,9 @@
+export enum ApiItineraryType {
+    MULTI_CITY = 'MULTI_CITY',
+    ONE_WAY = 'ONE_WAY',
+    RETURN = 'RETURN'
+}
+
 export type ApiBooking = {
     passengers: ApiPassenger[];
     itinerary: ApiItinerary;
@@ -15,7 +21,7 @@ export type ApiPassenger = {
 
 export type ApiItinerary = {
     connections: ApiConnection[];
-    type: string;
+    type: ApiItineraryType;
 }
 
 export type ApiCity = {

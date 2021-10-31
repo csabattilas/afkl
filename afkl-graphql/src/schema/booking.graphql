@@ -1,3 +1,9 @@
+enum ItineraryType {
+    one_way
+    return
+    multi_city
+}
+
 type Booking {
     passengers: [Passenger!]!
     itinerary: Itinerary!

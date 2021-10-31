@@ -1,6 +1,6 @@
 import {RESTDataSource} from 'apollo-datasource-rest';
-import {ApiBooking, ApiNode, ApiMarketingFlight} from '../api-types/booking';
-import {Node, Flight, Booking} from '../types';
+import {ApiBooking, ApiNode, ApiMarketingFlight, ApiItineraryType} from '../api-types/booking';
+import {Node, Flight, Booking, ItineraryType} from '../types';
 
 export class AfklApi extends RESTDataSource {
     constructor() {
@@ -44,7 +44,7 @@ export class AfklApi extends RESTDataSource {
 
     private createBooking = (response: ApiBooking): any => ({
         itinerary: {
-            type: response.itinerary.type,
+            type: this.parseApiItineraryToItinerary(response.itinerary.type),
             destinationCity: response.itinerary.connections[0].destination.city.name,
             connections: response.itinerary.connections.map(connection => ({
                 origin: this.parseApiNodeToNode(connection.origin),
@@ -79,4 +79,8 @@ export class AfklApi extends RESTDataSource {
         scheduledArrivalTime: marketingFlight.operatingFlight.localScheduledArrival,
         scheduledDepartureTime: marketingFlight.operatingFlight.localScheduledDeparture,
     })
+
+    private parseApiItineraryToItinerary(apiItineraryType: ApiItineraryType): string {
+        return Object.values(ItineraryType)?.find(itineraryType => apiItineraryType.toLowerCase() === itineraryType)?.replace('_', ' ') || '';
+    }
 }
