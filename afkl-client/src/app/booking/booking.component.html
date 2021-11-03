@@ -2,51 +2,15 @@
   Your booking
   <a [routerLink]="['/logon']">check another booking</a>
 </header>
-
 <div class="content">
   <div *ngIf="booking$ | async as booking; else loadingOrError">
     <h1>Your {{booking.itinerary.type}} booking to {{booking.itinerary.destinationCity}}</h1>
-    <mat-expansion-panel
+    <app-connection
       *ngFor="let connection of booking.itinerary.connections; let i = index"
       [attr.data-e2e]="'expansion-panel_connection-' + i"
+      [connection]="connection"
     >
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{connection.origin.city}} ({{connection.origin.iata}}) - {{connection.destination.city}}
-          ({{connection.destination.iata}})
-        </mat-panel-title>
-        <div class="duration">duration: {{connection.duration}}</div>
-      </mat-expansion-panel-header>
-      <div
-        *ngFor="let segment of connection.segments"
-      >
-        <div class="segment-flight">
-          <ul class="nodes">
-            <li>
-              <label>From:</label>
-              {{segment.departFrom.city}}
-            </li>
-            <li>
-              <label>To:</label>
-              {{segment.arriveOn.city}}
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <label>Deprting at:</label>
-              {{segment.flight.scheduledDepartureTime | date: 'dd-MM-yyyy, hh:mm'}}</li>
-            <li>
-              <label>Drrives at: </label>
-              {{segment.flight.scheduledArrivalTime | date: 'dd-MM-yyyy, hh:mm'}}</li>
-            <li>
-              <label>Flight: </label>
-              {{segment.flight.carrier}}{{segment.flight.number}} ({{segment.flight.aircraft}})
-            </li>
-          </ul>
-        </div>
-        <div>Check-in starts at: {{segment.flight.checkInStartTime | date: 'short'}}</div>
-      </div>
-    </mat-expansion-panel>
+    </app-connection>
     <h2>Passengers</h2>
     <ul>
       <li *ngFor="let passenger of booking.passengers">{{passenger.title}} {{passenger.firstName}} {{passenger.lastName}}</li>

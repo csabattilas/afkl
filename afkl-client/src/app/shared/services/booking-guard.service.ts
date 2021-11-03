@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
+import {ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanActivate} from '@angular/router';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {BookingService} from './booking.service';
@@ -7,7 +7,7 @@ import {BookingService} from './booking.service';
 @Injectable({
   providedIn: 'root'
 })
-export class BookingGuardService {
+export class BookingGuardService implements CanActivate {
   constructor(
     private readonly bookingService: BookingService,
     private readonly router: Router,

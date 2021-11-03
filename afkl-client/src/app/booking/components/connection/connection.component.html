@@ -1,0 +1,38 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{connection?.origin?.city}} ({{connection?.origin?.iata}}) - {{connection?.destination?.city}}
+      ({{connection?.destination?.iata}})
+    </mat-panel-title>
+    <div class="duration">duration: {{connection?.duration}}</div>
+  </mat-expansion-panel-header>
+  <div
+    *ngFor="let segment of connection?.segments"
+  >
+    <div class="segment-flight">
+      <ul class="nodes">
+        <li>
+          <span class="label">From:</span>
+          {{segment.departFrom.city}}
+        </li>
+        <li>
+          <span class="label">To:</span>
+          {{segment.arriveOn.city}}
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <span class="label">Deprting at:</span>
+          {{segment.flight.scheduledDepartureTime | date: 'dd-MM-yyyy, hh:mm'}}</li>
+        <li>
+          <span class="label">Drrives at: </span>
+          {{segment.flight.scheduledArrivalTime | date: 'dd-MM-yyyy, hh:mm'}}</li>
+        <li>
+          <span class="label">Flight: </span>
+          {{segment.flight.carrier}}{{segment.flight.number}} ({{segment.flight.aircraft}})
+        </li>
+      </ul>
+    </div>
+    <div>Check-in starts at: {{segment.flight.checkInStartTime | date: 'short'}}</div>
+  </div>
+</mat-expansion-panel>

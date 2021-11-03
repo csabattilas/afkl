@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import gql from "graphql-tag";
-import {Observable, Subject, throwError, ReplaySubject} from 'rxjs';
-import {Booking, Query} from '../types';
+import {Observable, Subject, throwError, BehaviorSubject} from 'rxjs';
+import {Booking, Query} from '../../types';
 import {Apollo} from 'apollo-angular';
 import {map, catchError, tap} from 'rxjs/operators';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
@@ -33,7 +33,7 @@ export class BookingService {
   private loading = new Subject<boolean>();
   loading$ = this.loading.asObservable();
 
-  private error = new ReplaySubject<string>(1);
+  private error = new BehaviorSubject<string | null>(null);
   error$ = this.error.asObservable();
 
   constructor(private readonly apollo: Apollo) {
@@ -52,7 +52,7 @@ export class BookingService {
         bookingCode,
         lastName
       },
-      fetchPolicy: "network-only"
+      fetchPolicy: 'network-only'
     }).pipe(
       catchError((e) => {
         this.loading.next(false);

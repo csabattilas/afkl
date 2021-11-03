@@ -1,0 +1,30 @@
+.segment-flight {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+}
+
+.duration {
+  margin-right: 2rem;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+
+  li {
+    padding: 0.3rem;
+  }
+}
+
+h2 {
+  margin-top: 2rem;
+}
+
+mat-expansion-panel {
+  margin-bottom: 2rem;
+}
+
+.label {
+  font-weight: bold;
+}

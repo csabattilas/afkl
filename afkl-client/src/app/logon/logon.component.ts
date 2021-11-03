@@ -1,7 +1,7 @@
 import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {FormBuilder, Validators, FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
-import {BookingService} from '../booking/booking.service';
+import {BookingService} from '../shared/services/booking.service';
 import {LogonFormGroup, LogonFormControls} from './logon.forms-model';
 
 @Component({
